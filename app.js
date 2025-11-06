@@ -1,4 +1,5 @@
 const server = require("./Chan_Jia_Hong_EGL301L2");
+const database = require("./database");
 
 // 1 function (filter the posts by a given title)
 // server.filterPostsByTitle("What is the cosmere?"); // test filter function that will return a valid posts
@@ -9,8 +10,26 @@ const server = require("./Chan_Jia_Hong_EGL301L2");
 
 // 2 function (to create a new posts)
 
-server.createPosts(
-  "Stephan King is the best!",
-  "I love Stephan Kings novels!!!",
-  ""
-);
+// server.createPosts(
+//   "Stephan King is the best!",
+//   "I love Stephan Kings novels!!!",
+//   ""
+// );
+
+// 3 function (add a comment to a pre-exising post)
+console.log("Find the post Id to add the comment to.");
+// console.log(database.posts);
+console.log("\n\n");
+
+// server.addCommentsToPost(1);
+// console.log(database.posts);
+
+// 4 function (Add new users into the "database")
+
+// server.signUp("Bob21", "bobe@mail.com", "BOBpassword");
+// console.log(database.users);
+
+// 5 function (Upvote or Downvote a user's post)
+
+// call the main function;
+server.upvotedownvote();

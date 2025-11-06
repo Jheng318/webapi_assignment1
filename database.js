@@ -18,6 +18,7 @@ module.exports = {
         "I love the cosmere",
         "Brandon Sanderson is my favorite author.",
       ],
+      vote: 100,
     },
     {
       id: 2,
@@ -32,6 +33,7 @@ module.exports = {
         "I think Mustang is the only person who truly sees this. Her pleas for him to just *be* for a minute always break my heart.",
         "Nah, his biggest flaw is definitely his relationship with the comms system. Why does he always hang up prematurely?!",
       ],
+      vote: -1,
     },
   ],
 };
