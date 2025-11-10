@@ -1,14 +1,17 @@
-const { parse } = require("path");
 const database = require("./database");
 const readLine = require("readline");
+
+// configs for the readline module
 const rl = readLine.createInterface({
   input: process.stdin,
   output: process.stdout,
 });
 module.exports = {
+  // variables needed for the UpvoteOrDownvote function
   selectedPost: null,
   selectedDownorUpvote: null,
   num: null,
+
   searchPostsByTitle(title) {
     const { posts } = database; // get the array of posts that is in the "database"
     if (posts.length < 0 || posts.length == 0) {
@@ -42,7 +45,7 @@ module.exports = {
     console.log("=".repeat(100));
     console.log(searchedPost);
   },
-  createPosts(title, description, comments) {
+  createPost(title, description, comments) {
     const { posts } = database; // get the array of posts that is in the "database"
     if (posts.length < 0 || posts.length == 0) {
       // handle exception that there is no posts in the database
@@ -125,25 +128,28 @@ module.exports = {
   },
 
   async upvotedownvote() {
-    const { posts } = database;
+    const { posts } = database; // get the posts from the database
+    // converts the rl.question method to new promise
     const questionFunc = (question) =>
       new Promise((res) => rl.question(question, res));
     console.log(posts);
 
     // get the user input on which post they want to upvote or downvote
     try {
+      // get the user input in the terminal like Python's Input function
       this.selectedPost = await questionFunc(
         "Which Posts do you want to upvote/downvote. (provide the ID): "
       );
       this.selectedDownorUpvote = await questionFunc(
         "Do you want to upvote or downvote a post. (+ for upvote, - for downvote): "
       );
-      const temp = await questionFunc(
+      const tempNum = await questionFunc(
         "How much do you want to upvote/downvote by? (Must be Number): "
       );
-      this.num = parseInt(temp);
+      this.num = parseInt(tempNum); // convert the number to a integer
       const selPost = posts.find((post) => post.id == this.selectedPost);
 
+      // conditional statement to check whether the selected sign is supposed to add or subtract form the this.num
       if (this.selectedDownorUpvote == "+") {
         selPost.vote += this.num;
       } else if (this.selectedDownorUpvote == "-") {
